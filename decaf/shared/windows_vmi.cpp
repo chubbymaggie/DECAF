@@ -90,7 +90,7 @@ unordered_map < uint32_t, pair<module *, uint32_t> > phys_module_map;
 
 
 static const char * dll_modules_list[] = {
-	"ntdll.dll", "kernel32.dll", "ntoskrnl.exe", "hal.dll", "win32k.sys", "ndis.sys", "user32.dll", "advapi32.dll", "psapi.dll", "shell.dll", "ws2_32.dll",
+	"ntdll.dll", "kernel32.dll", "ntoskrnl.exe", "hal.dll", "win32k.sys", "ndis.sys", "user32.dll", "advapi32.dll", "psapi.dll", "shell.dll", "ws2_32.dll", "urlmon.dll",
 };
 
 static bool should_extract_symbol(const char *module_name)
@@ -425,7 +425,7 @@ static void extract_export_table(IMAGE_NT_HEADERS *nth, uint32_t cr3, uint32_t b
 			goto done;
 
 		name[127] = 0;
-		funcmap_insert_function(mod->name, name, func_addrs[index]);
+		funcmap_insert_function(mod->name, name, func_addrs[index], 0);
 /*		if(!strcasecmp(mod->name, "kernel32.dll"))
 			monitor_printf(default_mon, 
 				"i=%d name=%s index=%d func=%08x\n", i, name, index, func_addrs[index]); */

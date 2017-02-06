@@ -30,6 +30,12 @@ typedef struct _ProcInfo
 	target_ulong ts_real_cred;
 	target_ulong ts_cred;
 	target_ulong ts_comm;
+
+	target_ulong module_name;
+	target_ulong module_size;
+	target_ulong module_init;
+	target_ulong module_list;
+	target_ulong modules;
 	target_ulong cred_uid;
 	target_ulong cred_gid;
 	target_ulong cred_euid;
@@ -51,6 +57,16 @@ typedef struct _ProcInfo
 	target_ulong dentry_d_iname;
 	target_ulong dentry_d_parent;
 	target_ulong ti_task;
+	target_ulong file_inode;
+	target_ulong inode_ino;
+	
+	target_ulong proc_fork_connector;
+	target_ulong proc_exit_connector;
+	target_ulong proc_exec_connector;
+	target_ulong vma_link;
+	target_ulong remove_vma;
+	target_ulong vma_adjust;
+	target_ulong trim_init_extable;
 // #ifdef TARGET_MIPS
 	target_ulong mips_pgd_current;
 // #endif	

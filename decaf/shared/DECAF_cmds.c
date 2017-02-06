@@ -22,12 +22,23 @@ void do_guest_ps(Monitor *mon)
  VMI_list_processes(mon);
 }
 
+void do_print_modules(Monitor *mon)
+{
+	monitor_printf(mon, "%20s\t%10s\t%10s\n", "Name", "Base",
+			"Size");
+	VMI_list_modules(mon, 0x00);
+	//print_loaded_modules(cpu_single_env);
+}
+
+
+
 void do_guest_modules(Monitor *mon, const QDict *qdict)
 {
   int pid = -1;
 
   //LOK: This check should be unnecessary since the
   // monitor should have taken care of it. However we leave it here
+  /*
   if (qdict_haskey(qdict, "pid"))
   {
     pid = qdict_get_int(qdict, "pid");
@@ -37,7 +48,9 @@ void do_guest_modules(Monitor *mon, const QDict *qdict)
   {
     monitor_printf(mon, "need a pid\n");
   }
- VMI_list_modules(mon, pid);
+  */
+ 	pid = qdict_get_int(qdict, "pid");
+	VMI_list_modules(mon, pid);
 }
 
 extern int DECAF_kvm_enabled;
